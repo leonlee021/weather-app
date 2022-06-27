@@ -77,7 +77,9 @@ const flow = (() => {
                     document.body.style.backgroundImage = 'url("images/light-rain.jpeg")';
                 }
             }
-            else if (response.weather[0].main == 'Fog' || 'Mist' || 'Haze' || 'Dust' || 'Smoke' || 'Sand' || 'Ash' || 'Squall' || 'Tornado'){
+            else if (response.weather[0].main == 'Fog' || response.weather[0].main == 'Mist' || response.weather[0].main == 'Haze' || 
+            response.weather[0].main == 'Dust' || response.weather[0].main == 'Smoke' || response.weather[0].main == 'Sand' || 
+            response.weather[0].main == 'Ash' || response.weather[0].main == 'Squall' || response.weather[0].main == 'Tornado'){
                 document.body.style.backgroundImage = 'url("images/atmosphere.jpeg")';
             }
             else if (response.weather[0].main == 'Clear'){
