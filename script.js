@@ -27,6 +27,9 @@ const flow = (() => {
         var date = a.getDate();
         var hour = a.getHours();
         var min = a.getMinutes();
+        if (min < 10){
+            min = "0" + min;
+        }
         var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
         return time;
       }
@@ -47,11 +50,11 @@ const flow = (() => {
             weatherDescription.textContent = response.weather[0].description;
             if (unitSwitch.checked){
                 temperature.textContent = Math.trunc((response.main.temp - 273.15) * 9/5 + 32) + "°F";
-                feelsLike.textContent = "Feels Like " + Math.trunc(((response.main.feels_like - 273.15) * 9/5 + 32)) + "°F";
+                feelsLike.textContent = "Feels Like: " + Math.trunc(((response.main.feels_like - 273.15) * 9/5 + 32)) + "°F";
             }
             else{
                 temperature.textContent = Math.trunc(response.main.temp - 273.15) + "°C";
-                feelsLike.textContent = "Feels Like " + Math.trunc((response.main.feels_like - 273.15)) + "°C";
+                feelsLike.textContent = "Feels Like: " + Math.trunc((response.main.feels_like - 273.15)) + "°C";
             }
             humidity.textContent = "Humidity: " + response.main.humidity + "%";
             windSpeed.textContent = timeConverter(response.dt);
@@ -59,17 +62,17 @@ const flow = (() => {
             if (unitSwitch.checked){
                 setTimeout(()=>{
                     temperature.textContent = Math.trunc((response.main.temp - 273.15) * 9/5 + 32) + "°F";
-                    feelsLike.textContent = "Feels Like " + Math.trunc(((response.main.feels_like - 273.15) * 9/5 + 32)) + "°F";
+                    feelsLike.textContent = "Feels Like: " + Math.trunc(((response.main.feels_like - 273.15) * 9/5 + 32)) + "°F";
                 }, 150);
             }else{
                 setTimeout(()=>{
                     temperature.textContent = Math.trunc(response.main.temp - 273.15) + "°C";
-                    feelsLike.textContent = "Feels Like " + Math.trunc((response.main.feels_like - 273.15)) + "°C";
+                    feelsLike.textContent = "Feels Like: " + Math.trunc((response.main.feels_like - 273.15)) + "°C";
                 }, 150);
             }
             })
             if (response.weather[0].main == 'Rain'){
-                document.body.style.backgroundImage = 'url("images/rain.webp")';
+                document.body.style.backgroundImage = 'url("images/rain.jpeg")';
                 if (response.weather[0].description == 'light rain' || response.weather[0].description == 'moderate rain'){
                     document.body.style.backgroundImage = 'url("images/light-rain.jpeg")';
                 }
