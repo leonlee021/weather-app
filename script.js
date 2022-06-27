@@ -12,7 +12,6 @@ const flow = (() => {
     // let currentUnit = 'c';
 
     chooseLocation('Seoul');
-    document.body.style.backgroundImage = 'url("clear.jpg")';
 
     form.addEventListener("submit",function(e){
         e.preventDefault();
@@ -20,19 +19,17 @@ const flow = (() => {
         return;
     })
 
-    // unitSwitch.addEventListener("click", function(e){
-    //     e.preventDefault();
-    //     if (currentUnit == 'c'){
-    //         currentUnit = 'f';
-    //         chooseLocation(searchedLocation.value);
-    //         return;
-    //     }
-    //     else{
-    //         currentUnit = 'c';
-    //         chooseLocation(searchedLocation.value);
-    //         return;
-    //     }
-    // })
+    function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var hour = a.getHours();
+        var min = a.getMinutes();
+        var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
+        return time;
+      }
 
     function chooseLocation(locationString){
         let newLink = 'http://api.openweathermap.org/data/2.5/weather?q=' + String(locationString) + '&APPID=f5e7fe8879505a14d5c08da2de2f74c8';
@@ -46,7 +43,7 @@ const flow = (() => {
         })
         .then(function(response){
             console.log(response);
-            locationHeading.textContent = response.name;
+            locationHeading.textContent = response.name + ", " + response.sys.country;
             weatherDescription.textContent = response.weather[0].description;
             if (unitSwitch.checked){
                 temperature.textContent = Math.trunc((response.main.temp - 273.15) * 9/5 + 32) + "°F";
@@ -56,21 +53,51 @@ const flow = (() => {
                 temperature.textContent = Math.trunc(response.main.temp - 273.15) + "°C";
                 feelsLike.textContent = "Feels Like " + Math.trunc((response.main.feels_like - 273.15)) + "°C";
             }
-            humidity.textContent = "Humidity: " + response.main.humidity;
-            windSpeed.textContent = "Wind Speed: " + response.wind.speed;
+            humidity.textContent = "Humidity: " + response.main.humidity + "%";
+            windSpeed.textContent = timeConverter(response.dt);
             unitSwitch.addEventListener("change",()=>{
-                if (unitSwitch.checked){
-                    setTimeout(()=>{
-                        temperature.textContent = Math.trunc((response.main.temp - 273.15) * 9/5 + 32) + "°F";
-                        feelsLike.textContent = "Feels Like " + Math.trunc(((response.main.feels_like - 273.15) * 9/5 + 32)) + "°F";
-                    }, 150);
-                }else{
-                    setTimeout(()=>{
-                        temperature.textContent = Math.trunc(response.main.temp - 273.15) + "°C";
-                        feelsLike.textContent = "Feels Like " + Math.trunc((response.main.feels_like - 273.15)) + "°C";
-                    }, 150);
-                }
+            if (unitSwitch.checked){
+                setTimeout(()=>{
+                    temperature.textContent = Math.trunc((response.main.temp - 273.15) * 9/5 + 32) + "°F";
+                    feelsLike.textContent = "Feels Like " + Math.trunc(((response.main.feels_like - 273.15) * 9/5 + 32)) + "°F";
+                }, 150);
+            }else{
+                setTimeout(()=>{
+                    temperature.textContent = Math.trunc(response.main.temp - 273.15) + "°C";
+                    feelsLike.textContent = "Feels Like " + Math.trunc((response.main.feels_like - 273.15)) + "°C";
+                }, 150);
+            }
             })
+            if (response.weather[0].main == 'Rain'){
+                document.body.style.backgroundImage = 'url("images/rain.webp")';
+                if (response.weather[0].description == 'light rain' || response.weather[0].description == 'moderate rain'){
+                    document.body.style.backgroundImage = 'url("images/light-rain.jpeg")';
+                }
+            }
+            else if (response.weather[0].main == 'Atmosphere'){
+                document.body.style.backgroundImage = 'url("images/atmosphere.jpeg")';
+            }
+            else if (response.weather[0].main == 'Clear'){
+                document.body.style.backgroundImage = 'url("images/clear.jpeg")';
+            }
+            else if (response.weather[0].main == 'Drizzle'){
+                document.body.style.backgroundImage = 'url("images/light-rain.jpeg")';
+            }
+            else if (response.weather[0].main == 'Snow'){
+                document.body.style.backgroundImage = 'url("images/snow.jpeg")';
+            }
+            else if (response.weather[0].main == 'Thunderstorm'){
+                document.body.style.backgroundImage = 'url("images/thunderstorm.jpg")';
+            }
+            else if (response.weather[0].main == 'Clouds'){
+                document.body.style.backgroundImage = 'url("images/cloud.jpeg")';
+                if (response.weather[0].description == 'overcast clouds'){
+                    document.body.style.backgroundImage = 'url("images/overcast-clouds.webp")';
+                }
+                if (response.weather[0].description == 'few clouds'){
+                    document.body.style.backgroundImage = 'url("images/light-clouds.jpeg")';
+                }
+            }
         })
         return;
     }

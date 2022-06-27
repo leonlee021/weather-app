@@ -1,6 +1,10 @@
 body{
     font-size: 2rem;
     font-family: 'Roboto', sans-serif;
+    background-repeat: no-repeat;
+    background-size: 200vh;
+    color: white;
+    text-shadow: 3px 3px 1px black;
 }
 
 body{
@@ -124,4 +128,14 @@ body{
   font-size: 12px;
   font-weight: bold;
   text-shadow: none;
+}
+
+#page-header{
+  color: rgb(245, 183, 68);
+  font-weight: 900;
+  font-size: 2.3rem;
+}
+
+#temperature{
+  font-size: 3.5rem;
 }

@@ -1,6 +1,10 @@
-html {
+body {
   font-size: 2rem;
-  font-family: 'Arvo', serif;
+  font-family: 'Roboto', sans-serif;
+  background-repeat: no-repeat;
+  background-size: 200vh;
+  color: white;
+  text-shadow: 3px 3px 1px black;
 }
 
 body {
@@ -157,5 +161,15 @@ input:checked + .slider:before {
   font-size: 12px;
   font-weight: bold;
   text-shadow: none;
+}
+
+#page-header {
+  color: #f5b744;
+  font-weight: 900;
+  font-size: 2.3rem;
+}
+
+#temperature {
+  font-size: 3.5rem;
 }
 /*# sourceMappingURL=style.css.map */
