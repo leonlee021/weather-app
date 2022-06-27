@@ -68,7 +68,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 20px;
+  gap: 0px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -109,7 +109,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #64dc54;
+  background-color: #fa6868;
   -webkit-transition: .4s;
   transition: .4s;
   -webkit-box-shadow: 0px 2px 1px #000000;
@@ -126,10 +126,6 @@ body {
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
 }
 
 input:focus + .slider {
