@@ -77,7 +77,7 @@ const flow = (() => {
                     document.body.style.backgroundImage = 'url("images/light-rain.jpeg")';
                 }
             }
-            else if (response.weather[0].main == 'Atmosphere'){
+            else if (response.weather[0].main == 'Fog' || 'Mist' || 'Haze' || 'Dust' || 'Smoke' || 'Sand' || 'Ash' || 'Squall' || 'Tornado'){
                 document.body.style.backgroundImage = 'url("images/atmosphere.jpeg")';
             }
             else if (response.weather[0].main == 'Clear'){
@@ -95,7 +95,7 @@ const flow = (() => {
             else if (response.weather[0].main == 'Clouds'){
                 document.body.style.backgroundImage = 'url("images/cloud.jpeg")';
                 if (response.weather[0].description == 'overcast clouds'){
-                    document.body.style.backgroundImage = 'url("images/overcast-clouds.webp")';
+                    document.body.style.backgroundImage = 'url("images/overcast-clouds.jpeg")';
                 }
                 if (response.weather[0].description == 'few clouds'){
                     document.body.style.backgroundImage = 'url("images/light-clouds.jpeg")';
