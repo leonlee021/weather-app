@@ -48,6 +48,8 @@ body{
 
 #location{
     width: 240px;
+    height: 30px;
+    box-shadow: 2px 2px 0px black;
 }
 
 #submit-button{
@@ -140,4 +142,9 @@ body{
 
 #temperature{
   font-size: 3rem;
+}
+
+#search-bar{
+  width: 30px;
+  transform: translateY(5px);
 }

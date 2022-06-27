@@ -79,6 +79,9 @@ body {
 
 #location {
   width: 240px;
+  height: 30px;
+  -webkit-box-shadow: 2px 2px 0px black;
+          box-shadow: 2px 2px 0px black;
 }
 
 #submit-button {
@@ -173,5 +176,11 @@ input:checked + .slider:before {
 
 #temperature {
   font-size: 3rem;
+}
+
+#search-bar {
+  width: 30px;
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
 }
 /*# sourceMappingURL=style.css.map */
