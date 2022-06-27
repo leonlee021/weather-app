@@ -35,7 +35,7 @@ const flow = (() => {
       }
 
     function chooseLocation(locationString){
-        let newLink = 'http://api.openweathermap.org/data/2.5/weather?q=' + String(locationString) + '&APPID=f5e7fe8879505a14d5c08da2de2f74c8';
+        let newLink = 'https://api.openweathermap.org/data/2.5/weather?q=' + String(locationString) + '&APPID=f5e7fe8879505a14d5c08da2de2f74c8';
         fetchData(newLink);
     }
     
