@@ -30,7 +30,12 @@ const flow = (() => {
         if (min < 10){
             min = "0" + min;
         }
-        var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
+        if (hour > 12){
+            var time = date + ' ' + month + ' ' + year + ' ' + (hour - 12) + ':' + min + ' PM';
+        }
+        else{
+            var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ' AM';
+        }
         return time;
       }
 
@@ -57,7 +62,7 @@ const flow = (() => {
                 feelsLike.textContent = "Feels Like: " + Math.trunc((response.main.feels_like - 273.15)) + "°C";
             }
             humidity.textContent = "Humidity: " + response.main.humidity + "%";
-            windSpeed.textContent = timeConverter(response.dt);
+            windSpeed.textContent = timeConverter(response.dt - 32400 + response.timezone);
             unitSwitch.addEventListener("change",()=>{
             if (unitSwitch.checked){
                 setTimeout(()=>{
