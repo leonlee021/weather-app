@@ -179,10 +179,4 @@ input:checked + .slider:before {
   -webkit-transform: translateY(5px);
           transform: translateY(5px);
 }
-
-@media (max-width: 500px) {
-  body {
-    font-size: 0.8rem;
-  }
-}
 /*# sourceMappingURL=style.css.map */
